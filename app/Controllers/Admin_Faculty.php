@@ -1,0 +1,83 @@
+<?php
+
+namespace App\Controllers;
+
+use App\Models\FacultyModel;
+use App\Models\UserModel;
+use CodeIgniter\I18n\Time;
+
+class Admin_Faculty extends BaseController
+{
+    /**
+     * create a new faculty
+     *
+     * @return mixed
+     */
+    public function create()
+    {
+        $u_model = new UserModel();
+        $f_model = new FacultyModel();
+        $myTime = new Time('now', 'Asia/Manila', 'en_US');
+        helper("form");
+
+        $user_data = [
+            'username' => esc($this->request->getPost('uname')),
+            'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+            'role'     => '2'
+        ];
+
+        $user_id = $u_model->insert($user_data);
+
+        $faculty_data = [
+            'fuser_no' => $myTime->getTimestamp(), 
+            'fname' => esc($this->request->getPost('fname')), 
+            'lname' => esc($this->request->getPost('lname')),
+            'user_id' => $user_id
+        ];
+
+        $f_model->insert($faculty_data);
+        session()->setTempdata('success', 'A new data successfully created!', 1);
+        return redirect()->back();
+    }
+
+    /**
+     * update the faculty
+     *
+     * @return mixed
+     */
+    public function update()
+    {
+        $model = new FacultyModel();
+        helper("form");
+
+        $data = [
+            'class_id'   => esc($this->request->getPost('class_id')),
+            'program_id' => esc($this->request->getPost('program')),
+            'level'      => esc($this->request->getPost('level')),
+            'section'    => esc($this->request->getPost('section'))
+        ];
+
+        $model->save($data);
+        session()->setTempdata('success', 'The data was successfully updated!', 1);
+        return redirect()->back();
+    }
+
+    /**
+     * delete a faculty
+     *
+     * @return mixed
+     */
+    public function delete($id)
+    {
+        $model = new FacultyModel();
+        helper("form");
+
+        $data = [
+            'class_id' => esc($id),
+        ];
+
+        $model->delete($data);
+        session()->setTempdata('success', 'The data was successfully deleted!', 1);
+        return redirect()->back();
+    }
+}
