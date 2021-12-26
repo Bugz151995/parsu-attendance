@@ -67,13 +67,13 @@ class Admin_Faculty extends BaseController
      *
      * @return mixed
      */
-    public function delete($id)
+    public function delete()
     {
         $model = new FacultyModel();
         helper("form");
 
         $data = [
-            'class_id' => esc($id),
+            'faculty_id' => esc($this->request->getPost('faculty_id')),
         ];
 
         $model->delete($data);

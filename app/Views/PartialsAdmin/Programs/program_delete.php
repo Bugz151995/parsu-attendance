@@ -7,7 +7,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearData()"></button>
       </div>
       <?= form_open('a/programs/delete') ?>
-      <input type="hidden" name="program_id" id="program_id">
+      <input type="hidden" name="program_id" id="pid_del">
       <div class="modal-body">
         Are you sure that you want to delete this data?
       </div>
@@ -19,3 +19,19 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    var deleteProgramModal = document.getElementById('deleteProgramModal')
+    let inputTag = document.getElementById('pid_del');
+
+    deleteProgramModal.addEventListener('hidden.bs.modal', function(event) {
+      inputTag.setAttribute('value', "");
+    })
+
+    deleteProgramModal.addEventListener('shown.bs.modal', function(event) {
+      let id = JSON.parse(sessionStorage.getItem('program'));
+      inputTag.setAttribute('value', id.program_id);
+    })
+  });
+</script>

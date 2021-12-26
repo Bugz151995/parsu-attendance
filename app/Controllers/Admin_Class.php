@@ -54,13 +54,13 @@ class Admin_Class extends BaseController
      *
      * @return mixed
      */
-    public function delete($id)
+    public function delete()
     {
         $model = new ClassModel();
         helper("form");
 
         $data = [
-            'class_id' => esc($id),
+            'class_id' => esc($this->request->getPost('class_id')),
         ];
 
         $model->delete($data);

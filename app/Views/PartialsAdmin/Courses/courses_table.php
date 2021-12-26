@@ -22,16 +22,13 @@
                      </td>
                      <td>
                         <div class="d-flex justify-content-center gap-2">
-                           <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editCourseModal">
+                           <button type="button" onclick='forwardData("course", <?= json_encode($c) ?>)' class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editCourseModal">
                               <i class="bx bx-edit"></i>
                            </button>
-                           <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCourseModal">
+                           <button type="button" onclick='forwardData("course", <?= json_encode($c) ?>)' class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCourseModal">
                               <i class="bx bx-trash"></i>
                            </button>
                         </div>
-
-                        <?= $this->include('PartialsAdmin/Courses/course_edit') ?>
-                        <?= $this->include('PartialsAdmin/Courses/course_delete') ?>
                      </td>
                   </tr>
                <?php endforeach; ?>
@@ -40,6 +37,9 @@
       </table>
    </div>
 </div>
+
+<?= $this->include('PartialsAdmin/Courses/course_edit') ?>
+<?= $this->include('PartialsAdmin/Courses/course_delete') ?>
 
 <!-- define the dataTable -->
 <script>

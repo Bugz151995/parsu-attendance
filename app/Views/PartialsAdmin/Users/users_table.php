@@ -32,9 +32,6 @@
                               <i class="bx bx-trash"></i>
                            </button>
                         </div>
-
-                        <?= $this->include('PartialsAdmin/Users/edit_student') ?>
-                        <?= $this->include('PartialsAdmin/Users/delete_student') ?>
                      </td>
                   </tr>
                <?php endforeach; ?>
@@ -58,9 +55,6 @@
                               <i class="bx bx-trash"></i>
                            </button>
                         </div>
-
-                        <?= $this->include('PartialsAdmin/Users/edit_faculty') ?>
-                        <?= $this->include('PartialsAdmin/Users/delete_faculty') ?>
                      </td>
                   </tr>
                <?php endforeach; ?>
@@ -69,6 +63,12 @@
       </table>
    </div>
 </div>
+
+
+<?= $this->include('PartialsAdmin/Users/edit_faculty') ?>
+<?= $this->include('PartialsAdmin/Users/delete_faculty') ?>
+<?= $this->include('PartialsAdmin/Users/edit_student') ?>
+<?= $this->include('PartialsAdmin/Users/delete_student') ?>
 
 <!-- define the dataTable -->
 <script>

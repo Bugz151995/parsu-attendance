@@ -20,12 +20,9 @@
                         <?= $p['program'] ?><br>
                         <span class="fst-italic small"><?= $p['description'] ?></span>
                      </td>
-                     <?php
-                        $str = implode(",", $p);
-                     ?>
                      <td>
                         <div class="d-flex justify-content-center gap-2">
-                           <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editProgramModal">
+                           <button type="button" onclick='forwardData("program", <?= json_encode($p) ?>)' class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editProgramModal">
                               <i class="bx bx-edit"></i>
                            </button>
                            <button type="button" class="btn btn-sm btn-danger" onclick='forwardData("program", <?= json_encode($p) ?>)' data-bs-toggle="modal" data-bs-target="#deleteProgramModal">

@@ -51,9 +51,6 @@
                               <i class="bx bx-trash"></i>
                            </button>
                         </div>
-
-                        <?= $this->include('PartialsAdmin/Class/class_edit') ?>
-                        <?= $this->include('PartialsAdmin/Class/class_delete') ?>
                      </td>
                   </tr>
                <?php endforeach; ?>
@@ -62,6 +59,9 @@
       </table>
    </div>
 </div>
+
+<?= $this->include('PartialsAdmin/ClassSchedules/schedule_edit') ?>
+<?= $this->include('PartialsAdmin/ClassSchedules/schedule_delete') ?>
 
 <!-- define the dataTable -->
 <script>

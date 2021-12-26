@@ -70,13 +70,13 @@ class Admin_Schedule extends BaseController
      *
      * @return mixed
      */
-    public function delete($id)
+    public function delete()
     {
         $model = new ScheduleModel();
         helper("form");
 
         $data = [
-            'class_id' => esc($id),
+            'schedule_id' => esc($this->request->getPost('schedule_id')),
         ];
 
         $model->delete($data);

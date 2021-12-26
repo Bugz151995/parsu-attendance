@@ -51,7 +51,7 @@ class Admin_Student extends BaseController
         helper("form");
 
         $data = [
-            'class_id'   => esc($this->request->getPost('class_id')),
+            'student_id' => esc($this->request->getPost('student_id')),
             'program_id' => esc($this->request->getPost('program')),
             'level'      => esc($this->request->getPost('level')),
             'section'    => esc($this->request->getPost('section'))
@@ -67,13 +67,13 @@ class Admin_Student extends BaseController
      *
      * @return mixed
      */
-    public function delete($id)
+    public function delete()
     {
         $model = new StudentModel();
         helper("form");
 
         $data = [
-            'class_id' => esc($id),
+            'student_id' => esc($this->request->getPost('student_id')),
         ];
 
         $model->delete($data);
