@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="createScheduleModal" tabindex="-1" aria-labelledby="createScheduleModalLabel" aria-hidden="true">
+<div class="modal fade" id="createScheduleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="createScheduleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

@@ -95,7 +95,14 @@ $routes->group('a', function($routes){
     });
 
     $routes->get('report', 'UI_Admin::report');
-    $routes->get('users', 'UI_Admin::users');
+
+    $routes->group('users', function($routes){
+        $routes->get('/', 'UI_Admin::users');
+        $routes->post('create', 'Admin_Users::create');
+        $routes->post('update', 'Admin_Users::update');
+        $routes->post('delete', 'Admin_Users::delete');
+    });
+
 });
 
 // FACULTY ROUTE GROUP

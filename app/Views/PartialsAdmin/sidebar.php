@@ -1,9 +1,9 @@
 <div class="sidebar active-nav d-flex justify-content-between flex-wrap flex-column" id="sidebar">
   <ul class="nav flex-column text-white w-100">
-    <a href="#" class="nav-link text-white">
-      <div class="d-flex">
+    <a href="#" class="nav-link text-white bg-primary navbar-title">
+      <div class="d-flex small">
         <div class="col-auto">
-          <img src="<?= base_url() ?>/assets/images/cbm.png" class="navbar-brand-img me-3" alt="">
+          <img src="<?= base_url() ?>/assets/images/cbm.png" class="shadow navbar-brand-img me-3 bg-light rounded p-1" alt="">
         </div>
           <span class="small align-middle">Real-Time Mobile-Based Attendance System</span>
       </div>

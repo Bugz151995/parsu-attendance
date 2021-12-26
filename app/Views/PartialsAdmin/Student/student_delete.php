@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="deleteStudentModal" tabindex="-1" aria-labelledby="deleteStudentModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteStudentModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="deleteStudentModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
