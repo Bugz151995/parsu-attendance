@@ -138,9 +138,15 @@ class UI_Faculty extends BaseController
   {
     helper("form");
     $uri = service('uri');
+    $model = new ClassScheduleModel();
 
     $data = [
-      'page' => $uri->getSegment(2)
+      'page' => $uri->getSegment(2),
+      'class' => $model->join('courses', 'courses.course_id = class_schedules.course_id')
+        ->join('class', 'class.class_id = class_schedules.class_id')
+        ->join('programs', 'programs.program_id = class.program_id')
+        ->where('faculty_id', session()->get('faculty_id'))
+        ->findAll(),
     ];
 
     return view('UI_Faculty/report', $data);

@@ -1,5 +1,23 @@
-<div class="card shadow mt-5">
-  <div class="card-header"></div>
+<div class="card shadow-sm mt-5">
+  <div class="card-header">Select Attendance Data</div>
+  <div class="card-body">
+    <?= form_open('f/report/select') ?>
+    <div class="mb-3">
+      <label class="form-label" for="class">Class <span class="text-danger">*</span></label>
+      <select class="form-select" style="width:100%" id="class-list" name="class" placeholder="Class" required>
+        <option value="" selected disabled>Select A Class</option>
+        <?php if ($class) : ?>
+          <?php foreach ($class as $c) : ?>
+            <option value="<?= $c['class_id'] ?>">
+              <?= $c['program'] . " " . $c['level'] . "-" . $c['section'] ?>
+              [<?= $c['course'] ?>]
+            </option>
+          <?php endforeach ?>
+        <?php endif ?>
+      </select>
+    </div>
+    <?= form_close() ?>
+  </div>
 </div>
 <div class="card shadow p-3 mt-5">
   <table class="table" id="student-list">
@@ -79,6 +97,12 @@
 </div>
 
 <script>
+  $(document).ready(() => {
+    $('#class-list').select2({
+      theme: "classic"
+    });
+  })
+
   function print(elementId) {
     var element = document.getElementById(elementId);
     var opt = {
