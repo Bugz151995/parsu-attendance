@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use CodeIgniter\I18n\Time;
 
-use App\Models\ScheduleModel;
 use App\Models\ClassScheduleModel;
 
 class Admin_Schedule extends BaseController
@@ -16,29 +15,22 @@ class Admin_Schedule extends BaseController
      */
     public function create()
     {
-        $s_model = new ScheduleModel();
-        $cs_model = new ClassScheduleModel();
+        $model = new ClassScheduleModel();
         helper("form");
 
-        $schedule_data = [
-            'start_time' => esc($this->request->getPost('start_time')), 
-            'end_time' => esc($this->request->getPost('end_time')), 
-            'day' => esc($this->request->getPost('day')), 
-            'room' => esc($this->request->getPost('room')), 
-            'semester' => esc($this->request->getPost('semester')),  
-            'academic_year' => esc($this->request->getPost('ay'))
+        $data = [
+            'start_time'    => esc($this->request->getPost('start_time')), 
+            'end_time'      => esc($this->request->getPost('end_time')), 
+            'day'           => esc($this->request->getPost('day')), 
+            'room'          => esc($this->request->getPost('room')), 
+            'semester'      => esc($this->request->getPost('semester')),  
+            'academic_year' => esc($this->request->getPost('ay')),
+            'class_id'      => esc($this->request->getPost('class')), 
+            'course_id'     => esc($this->request->getPost('course')),
+            'faculty_id'    => esc($this->request->getPost('faculty'))
         ];
 
-        $schedule_id = $s_model->insert($schedule_data);
-
-        $class_schedule_data = [
-            'class_id' => esc($this->request->getPost('class')), 
-            'course_id' => esc($this->request->getPost('course')), 
-            'schedule_id' => $schedule_id, 
-            'faculty_id' => esc($this->request->getPost('faculty'))
-        ];
-
-        $cs_model->insert($class_schedule_data);
+        $model->insert($data);
         session()->setTempdata('success', 'A new data successfully created!', 1);
         return redirect()->back();
     }
@@ -50,14 +42,20 @@ class Admin_Schedule extends BaseController
      */
     public function update()
     {
-        $model = new ScheduleModel();
+        $model = new ClassScheduleModel();
         helper("form");
 
         $data = [
-            'class_id'   => esc($this->request->getPost('class_id')),
-            'program_id' => esc($this->request->getPost('program')),
-            'level'      => esc($this->request->getPost('level')),
-            'section'    => esc($this->request->getPost('section'))
+            'class_schedule_id' => esc($this->request->getPost('class_schedule_id')), 
+            'start_time'        => esc($this->request->getPost('start_time')), 
+            'end_time'          => esc($this->request->getPost('end_time')), 
+            'day'               => esc($this->request->getPost('day')), 
+            'room'              => esc($this->request->getPost('room')), 
+            'semester'          => esc($this->request->getPost('semester')),  
+            'academic_year'     => esc($this->request->getPost('ay')),
+            'course_id'         => esc($this->request->getPost('course')),
+            'class_id'          => esc($this->request->getPost('class')),
+            'faculty_id'        => esc($this->request->getPost('faculty'))
         ];
 
         $model->save($data);
@@ -72,11 +70,11 @@ class Admin_Schedule extends BaseController
      */
     public function delete()
     {
-        $model = new ScheduleModel();
+        $model = new ClassScheduleModel();
         helper("form");
 
         $data = [
-            'schedule_id' => esc($this->request->getPost('schedule_id')),
+            'class_schedule_id' => esc($this->request->getPost('class_schedule_id')),
         ];
 
         $model->delete($data);

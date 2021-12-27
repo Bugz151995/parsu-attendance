@@ -10,7 +10,7 @@ use \App\Models\CourseModel;
 use \App\Models\ClassModel;
 use \App\Models\FacultyModel;
 use \App\Models\StudentModel;
-use \App\Models\ScheduleModel;
+use \App\Models\ClassScheduleModel;
 
 /**
  * this controls the navigation of the admin UI
@@ -163,13 +163,12 @@ class UI_Admin extends BaseController
     helper(["form", "date"]);
     $uri = service('uri');
     $time = new Time('now');
-    $s_model = new ScheduleModel();
+    $s_model = new ClassScheduleModel();
     $c_model = new ClassModel();
     $co_model = new CourseModel();
     $f_model = new FacultyModel();
 
-    $schedules = $s_model->join('class_schedules', 'class_schedules.schedule_id = schedules.schedule_id')
-      ->join('faculty', 'faculty.faculty_id = class_schedules.faculty_id')
+    $schedules = $s_model->join('faculty', 'faculty.faculty_id = class_schedules.faculty_id')
       ->join('courses', 'courses.course_id = class_schedules.course_id')
       ->join('class', 'class.class_id = class_schedules.class_id')
       ->join('programs', 'programs.program_id = class.program_id')
