@@ -12,7 +12,6 @@
   <div class="container p-4">
 
     <?= $this->include('PartialsStudent/breadcrumb') ?> 
-    <?= $this->include('PartialsStudent/Schedule/schedules') ?>
 
   </div>
 </main>

@@ -28,7 +28,7 @@ class UI_Admin extends BaseController
     $uri = service('uri');
     $f = new FacultyModel();
     $s = new StudentModel();
-    $sc = new ScheduleModel();
+    $sc = new ClassScheduleModel();
     $c = new ClassModel();
     $p = new ProgramModel();
     $co = new CourseModel();
