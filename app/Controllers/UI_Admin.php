@@ -133,13 +133,21 @@ class UI_Admin extends BaseController
   {
     helper("form");
     $uri = service('uri');
+    $time = new Time('now');
     $s_model = new StudentModel();
     $c_model = new ClassModel();
 
+    $students = $s_model->join('users', 'students.user_id = users.user_id')
+      ->join('class', 'class.class_id = students.class_id')
+      ->join('programs', 'programs.program_id = class.program_id')
+      ->join('enrollments', 'enrollments.student_id = students.student_id', 'left')
+      ->findAll();
+
     $data = [
       'page'     => $uri->getSegment(2),
-      'students' => $s_model->join('users', 'students.user_id = users.user_id')->findAll(),
-      'class'    => $c_model->join('programs', 'programs.program_id = class.program_id')->findAll()
+      'students' => $students,
+      'class'    => $c_model->join('programs', 'programs.program_id = class.program_id')->findAll(),
+      'Time'     => $time
     ];
 
     return view('UI_Admin/students', $data);

@@ -16,7 +16,11 @@
                <th>#</th>
                <th>Student #</th>
                <th>Name</th>
-               <th>Username</th>
+               <th>Class</th>
+               <th>Enrollment Code</th>
+               <th>A/Y</th>
+               <th>Sem</th>
+               <th>Status</th>
                <th>Action</th>
             </tr>
          </thead>
@@ -26,14 +30,30 @@
                   <tr>
                      <td><?= $s['student_id']; ?></td>
                      <td><?= $s['suser_no']; ?></td>
-                     <td><?= $s['fname'] . ' ' . $s['lname']; ?></td>
-                     <td><?= $s['username']; ?></td>
+                     <td>
+                        <?= $s['fname'] . ' ' . $s['lname']; ?><br>                 
+                        <span class="text-muted small fst-italic"><?= $s['username']; ?></span>
+                     </td>
+                     <td><?= $s['program'].' '.$s['level'].'-'.$s['section']; ?></td>
+                     <td><?= $s['enrollment_code']; ?></td>
+                     <td><?= $s['academic_year']; ?></td>
+                     <td><?= $s['semester']; ?></td>
+                     <td>
+                        <?php if($s['isVerified'] == '0'): ?>
+                           <div class="badge bg-warning">Pending</div>
+                        <?php else: ?>
+                           <div class="badge bg-success">Enrolled</div>
+                        <?php endif ?>
+                     </td>
                      <td>
                         <div class="d-flex justify-content-center gap-2">
-                           <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editStudentModal">
+                           <button type="button" onclick='forwardData("student", <?= json_encode($s) ?>)' class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#refreshStudentModal">
+                              <i class="bx bx-refresh"></i>
+                           </button>
+                           <button type="button" onclick='forwardData("student", <?= json_encode($s) ?>)' class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editStudentModal">
                               <i class="bx bx-edit"></i>
                            </button>
-                           <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteStudentModal">
+                           <button type="button" onclick='forwardData("student", <?= json_encode($s) ?>)' class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteStudentModal">
                               <i class="bx bx-trash"></i>
                            </button>
                         </div>
@@ -46,6 +66,7 @@
    </div>
 </div>
 
+<?= $this->include('PartialsAdmin/Student/student_refresh') ?>
 <?= $this->include('PartialsAdmin/Student/student_edit') ?>
 <?= $this->include('PartialsAdmin/Student/student_delete') ?>
 

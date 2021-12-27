@@ -7,6 +7,7 @@ use CodeIgniter\Validation\FileRules;
 use CodeIgniter\Validation\FormatRules;
 use CodeIgniter\Validation\Rules;
 use \App\Validation\LoginRules;
+use \App\Validation\CheckEnrollmentCode;
 
 class Validation
 {
@@ -26,6 +27,7 @@ class Validation
         FileRules::class,
         CreditCardRules::class,
         LoginRules::class,
+        CheckEnrollmentCode::class,
     ];
 
     /**
@@ -59,5 +61,15 @@ class Validation
                 'auth' => 'The password is incorrect.'
             ]
         ]
+    ];
+
+    public $enrollmentRules = [
+        'code' => [
+            'label' => 'Enrollment Code',
+            'rules' => 'check_code[code]',
+            'errors' => [
+                'check_code' => 'The enrollment code is incorrect.'
+            ]
+        ],
     ];
 }

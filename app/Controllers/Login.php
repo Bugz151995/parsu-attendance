@@ -2,7 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Models\UserModel;
+use App\Models\StudentModel;
+use App\Models\AdminModel;
+use App\Models\FacultyModel;
 
 class Login extends BaseController
 {
@@ -28,6 +30,10 @@ class Login extends BaseController
     public function auth()
     {
         helper("form");
+        $student = new StudentModel();
+        $faculty = new FacultyModel();
+        $admin = new AdminModel();
+
         if (!$this->validate('loginRules')) {
             $validation = [
                 'validation' => $this->validator
@@ -38,17 +44,30 @@ class Login extends BaseController
 
         session()->set('isLoggedIn', true);
         $role = session()->get('role');
+        $user_id = session()->get('user_id');
 
         switch ($role) {
             case 1:
+                $admin_id = $admin->select('admin_id')
+                    ->where('admins.user_id', $user_id)
+                    ->first();
+                session()->set($admin_id);
                 return redirect()->to('a/dashboard');
                 break;
             case 2:
+                $faculty_id = $faculty->select('faculty_id')
+                    ->where('faculty.user_id', $user_id)
+                    ->first();
+                session()->set($faculty_id);
                 return redirect()->to('f/home');
                 break;
             case 3:
-                return redirect()->to('home');
-                break;    
+                $student_id = $student->select('student_id')
+                    ->where('students.user_id', $user_id)
+                    ->first();
+                session()->set('student_id', $student_id);
+                return redirect()->to('enrollment');
+                break;
         }
     }
 }

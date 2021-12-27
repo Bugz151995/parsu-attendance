@@ -44,6 +44,12 @@ $routes->get('logout', 'Logout::index');
 // STUDENT ROUTE GROUP
 $routes->group('/', function($routes){
     $routes->get('home', 'UI_Student::index');
+
+    $routes->group('enrollment', function($routes){
+        $routes->get('/', 'UI_Student::enrollment');
+        $routes->post('verify', 'Student_Enrollment::update');
+    });
+
     $routes->get('schedule', 'UI_Student::schedule');
     $routes->get('overview', 'UI_Student::overview');
 });
@@ -85,6 +91,7 @@ $routes->group('a', function($routes){
         $routes->post('create', 'Admin_Student::create');
         $routes->post('update', 'Admin_Student::update');
         $routes->post('delete', 'Admin_Student::delete');
+        $routes->post('generate_enrolment_code', 'Admin_Student::generateCode');
     });
 
     $routes->group('schedules', function($routes){

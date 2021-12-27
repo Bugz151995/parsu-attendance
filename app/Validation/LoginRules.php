@@ -26,7 +26,10 @@ class LoginRules {
 
     $isVerified = password_verify($data['password'], $user['password']);
 
-    ($isVerified) ? session()->set('role', $user['role']) : null ;
+    if($isVerified) {
+      session()->set('user_id', $user['user_id']); 
+      session()->set('role', $user['role']); 
+    }
     
     return $isVerified;
   }

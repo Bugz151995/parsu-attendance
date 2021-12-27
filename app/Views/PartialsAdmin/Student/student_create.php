@@ -14,7 +14,7 @@
             <?php if ($class) : ?>
               <?php foreach ($class as $c) : ?>
                 <option value="<?= $c['class_id'] ?>">
-                  <?= $c['program']." ".$c['level']."-".$c['section'] ?>
+                  <?= $c['program'] . " " . $c['level'] . "-" . $c['section'] ?>
                 </option>
               <?php endforeach ?>
             <?php endif ?>
