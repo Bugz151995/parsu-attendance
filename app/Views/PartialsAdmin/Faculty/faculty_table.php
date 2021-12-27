@@ -30,10 +30,10 @@
                      <td><?= $f['username']; ?></td>
                      <td>
                         <div class="d-flex justify-content-center gap-2">
-                           <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editFacultyModal">
+                           <button type="button" onclick='forwardData("faculty", <?= json_encode($f) ?>)' class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editFacultyModal">
                               <i class="bx bx-edit"></i>
                            </button>
-                           <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteFacultyModal">
+                           <button type="button" onclick='forwardData("faculty", <?= json_encode($f) ?>)' class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteFacultyModal">
                               <i class="bx bx-trash"></i>
                            </button>
                         </div>

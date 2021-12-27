@@ -72,7 +72,7 @@ class UI_Student extends BaseController
     $model = new ClassScheduleModel();
 
     $data = [
-      'page' => $uri->getSegment(1),
+      'page'      => $uri->getSegment(1),
       'schedules' => $model->join('faculty', 'faculty.faculty_id = class_schedules.faculty_id')
         ->where('class_schedules.class_id', session()->get('class_id'))->findAll()
     ];

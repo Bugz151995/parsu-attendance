@@ -114,11 +114,13 @@ class UI_Admin extends BaseController
   {
     helper("form");
     $uri = service('uri');
-    $model = new FacultyModel();
+    $f_model = new FacultyModel();
+    $c_model = new ClassModel();
 
     $data = [
       'page' => $uri->getSegment(2),
-      'faculty' => $model->join('users', 'faculty.user_id = users.user_id')->findAll()
+      'faculty' => $f_model->join('users', 'faculty.user_id = users.user_id')->findAll(),
+      'class'    => $c_model->join('programs', 'programs.program_id = class.program_id')->findAll()
     ];
 
     return view('UI_Admin/faculty', $data);

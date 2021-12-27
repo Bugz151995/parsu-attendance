@@ -47,17 +47,28 @@ class Admin_Faculty extends BaseController
      */
     public function update()
     {
-        $model = new FacultyModel();
+        $u_model = new UserModel();
+        $f_model = new FacultyModel();
+        $myTime = new Time('now', 'Asia/Manila', 'en_US');
         helper("form");
 
-        $data = [
-            'class_id'   => esc($this->request->getPost('class_id')),
-            'program_id' => esc($this->request->getPost('program')),
-            'level'      => esc($this->request->getPost('level')),
-            'section'    => esc($this->request->getPost('section'))
+        $user_data = [
+            'user_id'  => esc($this->request->getPost('user_id')),
+            'username' => esc($this->request->getPost('uname')),
+            'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+            'role'     => '2'
         ];
 
-        $model->save($data);
+        $u_model->save($user_data);
+
+        $faculty_data = [
+            'faculty_id' => esc($this->request->getPost('faculty_id')),
+            'fname'      => esc($this->request->getPost('fname')), 
+            'lname'      => esc($this->request->getPost('lname')),
+            'user_id'    => esc($this->request->getPost('user_id'))
+        ];
+
+        $f_model->save($faculty_data);
         session()->setTempdata('success', 'The data was successfully updated!', 1);
         return redirect()->back();
     }
