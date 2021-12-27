@@ -192,23 +192,6 @@ class UI_Admin extends BaseController
   }
 
   /**
-   * show the report page
-   *
-   * @return mixed
-   */
-  public function report()
-  {
-    helper("form");
-    $uri = service('uri');
-
-    $data = [
-      'page' => $uri->getSegment(2)
-    ];
-
-    return view('UI_Admin/report', $data);
-  }
-
-  /**
    * show the users page
    *
    * @return mixed

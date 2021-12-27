@@ -36,10 +36,6 @@
       <i class="bx bxs-book-alt"></i>
       <span class="mx-2">Class Schedules</span>
     </a>
-    <a href="<?= base_url() ?>/a/report" class="nav-link link-light <?= setActive($page, 'report') ?>">
-      <i class="bx bxs-report"></i>
-      <span class="mx-2">Report</span>
-    </a>
     <a href="<?= base_url() ?>/a/users" class="nav-link link-light <?= setActive($page, 'users') ?>">
       <i class="bx bx-group"></i>
       <span class="mx-2">Users</span>

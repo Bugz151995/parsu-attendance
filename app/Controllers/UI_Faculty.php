@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ClassScheduleModel;
+use App\Models\StudentModel;
 
 /**
  * this controls the navigation of the faculty UI
@@ -56,17 +57,59 @@ class UI_Faculty extends BaseController
 
     $data = [
       'page'  => $uri->getSegment(2),
-      'class' => $model->select('program, level, section')
+      'class' => $model->select('class.class_id, program, level, section, course, class_schedules.course_id')
         ->join('courses', 'courses.course_id = class_schedules.course_id')
         ->join('class', 'class.class_id = class_schedules.class_id')
         ->join('programs', 'programs.program_id = class.program_id')
         ->where('faculty_id', session()->get('faculty_id'))
-        ->groupBy('class_schedules.class_id')
+        ->groupBy('class_schedules.course_id')
         ->findAll(),
     ];
 
 
     return view('UI_Faculty/class', $data);
+  }
+
+  /**
+   * show the students list in a selected course
+   *
+   * @param int $class_id [selected class_id]
+   * @return mixed
+   */
+  public function students($class_id)
+  {
+    helper("form");
+    $uri = service('uri');
+    $model = new StudentModel();
+
+    $data = [
+      'page'       => $uri->getSegment(2),
+      'subsegment' => $uri->getSegment(3),
+      'students'   => $model->select('students.student_id, suser_no, fname, lname')
+        ->where('class_id', esc($class_id))
+        ->findAll(),
+      'present'    => $model->select('students.student_id, COUNT(students_attendance.status) as count')
+        ->join('students_attendance', 'students_attendance.student_id = students.student_id', 'left')
+        ->where('class_id', esc($class_id))
+        ->where('students_attendance.status', 'P')
+        ->groupBy('students.student_id')
+        ->get()->getResultArray(),
+      'absent'    => $model->select('students.student_id, COUNT(students_attendance.status) as count')
+        ->join('students_attendance', 'students_attendance.student_id = students.student_id', 'left')
+        ->where('class_id', esc($class_id))
+        ->where('students_attendance.status', 'A')
+        ->orWhere('students_attendance.status', null)
+        ->groupBy('students.student_id')
+        ->get()->getResultArray(),
+      'late'    => $model->select('students.student_id, COUNT(students_attendance.status) as count')
+        ->join('students_attendance', 'students_attendance.student_id = students.student_id', 'left')
+        ->where('students_attendance.status', 'L')
+        ->where('class_id', esc($class_id))
+        ->groupBy('students.student_id')
+        ->get()->getResultArray()
+    ];
+
+    return view('UI_Faculty/students', $data);
   }
 
   /**

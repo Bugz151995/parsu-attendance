@@ -24,7 +24,7 @@ class UI_Student extends BaseController
     $myTime = new Time("now", 'Asia/Manila');
     $model = new ClassScheduleModel();
 
-    $select = 'class_schedules.class_schedule_id,	class_id,	class_schedules.course_id,	start_time,	end_time,	day,	room, class_schedules.faculty_id,	semester,	academic_year,	class_schedules.created_at,	fuser_no,	fname,	lname,	user_id,	course,	description,	student_attendance_id, time_in,	time_out,	status,	image,	student_id';
+    $select = 'class_schedules.class_schedule_id,	class_id,	class_schedules.course_id,	start_time,	end_time,	day,	room, class_schedules.faculty_id,	semester,	academic_year,	class_schedules.created_at,	fuser_no,	fname,	lname,	user_id,	course,	description,	student_attendance_id, time_in,	time_out,	status,	student_id';
     
     $data = [
       'page'      => $uri->getSegment(1),

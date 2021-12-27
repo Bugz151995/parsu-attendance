@@ -12,6 +12,7 @@
   <div class="container p-4">
 
     <?= $this->include('PartialsFaculty/breadcrumb') ?> 
+    <?= $this->include('PartialsFaculty/Class/class') ?> 
 
   </div>
 </main>

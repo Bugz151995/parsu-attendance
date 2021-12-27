@@ -106,8 +106,6 @@ $routes->group('a', function($routes){
         $routes->post('delete', 'Admin_Schedule::delete');
     });
 
-    $routes->get('report', 'UI_Admin::report');
-
     $routes->group('users', function($routes){
         $routes->get('/', 'UI_Admin::users');
         $routes->post('create', 'Admin_Users::create');
@@ -120,9 +118,17 @@ $routes->group('a', function($routes){
 // FACULTY ROUTE GROUP
 $routes->group('f', function($routes){
     $routes->get('dashboard', 'UI_Faculty::index');
-    $routes->get('class', 'UI_Faculty::class');
     $routes->get('check_attendance', 'UI_Faculty::check_attendance');
-    $routes->get('report', 'UI_Faculty::report');
+
+    $routes->group('report', function($routes){
+        $routes->get('/', 'UI_Faculty::report');
+        $routes->get('create', 'Faculty_Report::create');
+    });
+
+    $routes->group('class', function($routes){
+        $routes->get('/', 'UI_Faculty::class');
+        $routes->get('students/(:num)', 'UI_Faculty::students/$1');
+    });
 });
 
 /*

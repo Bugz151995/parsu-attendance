@@ -9,17 +9,14 @@
                <th>#</th>
                <th>Class</th>
                <th>Course</th>
-               <th>Time</th>
-               <th>Day</th>
-               <th>Room</th>
                <th>Action</th>
             </tr>
          </thead>
          <tbody>
-            <?php if ($schedules) : ?>
-               <?php foreach ($schedules as $sc) : ?>
+            <?php if ($class) : ?>
+               <?php foreach ($class as $sc) : ?>
                   <tr>
-                     <td><?= $sc['class_schedule_id']; ?></td>
+                     <td><?= $sc['class_id']; ?></td>
                      <td>
                         <?= $sc['program'] . ' ' . $sc['level'] . '-' . $sc['section'] ?>
                      </td>
@@ -27,10 +24,8 @@
                         <?= $sc['course'] ?>
                      </td>
                      <td>
-                        <?= date("h:i a", strtotime($sc['start_time']))." - ".date("h:i a", strtotime($sc['end_time'])) ?>
+                       <a href="<?= base_url() ?>/f/class/students/<?= $sc['class_id']?>" class="btn btn-primary btn-sm"><i class="bx bxs-user-detail"></i> View Students</a>
                      </td>
-                     <td><?= $sc['day'] ?></td>
-                     <td><?= $sc['room'] ?></td>
                   </tr>
                <?php endforeach; ?>
             <?php endif; ?>

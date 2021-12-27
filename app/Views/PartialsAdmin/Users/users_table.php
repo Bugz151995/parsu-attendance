@@ -10,7 +10,6 @@
                <th>Name</th>
                <th>Username</th>
                <th>Role</th>
-               <th>Action</th>
             </tr>
          </thead>
          <tbody>
@@ -22,16 +21,6 @@
                      <td><?= $s['username']; ?></td>
                      <td>
                         <div class="badge bg-primary">Student</div>
-                     </td>
-                     <td>
-                        <div class="d-flex justify-content-center gap-2">
-                           <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editStudentModal">
-                              <i class="bx bx-edit"></i>
-                           </button>
-                           <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteStudentModal">
-                              <i class="bx bx-trash"></i>
-                           </button>
-                        </div>
                      </td>
                   </tr>
                <?php endforeach; ?>
@@ -46,16 +35,6 @@
                      <td>
                         <div class="badge bg-secondary">Faculty</div>
                      </td>
-                     <td>
-                        <div class="d-flex justify-content-center gap-2">
-                           <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editFacultyModal">
-                              <i class="bx bx-edit"></i>
-                           </button>
-                           <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteFacultyModal">
-                              <i class="bx bx-trash"></i>
-                           </button>
-                        </div>
-                     </td>
                   </tr>
                <?php endforeach; ?>
             <?php endif; ?>
@@ -63,12 +42,6 @@
       </table>
    </div>
 </div>
-
-
-<?= $this->include('PartialsAdmin/Users/edit_faculty') ?>
-<?= $this->include('PartialsAdmin/Users/delete_faculty') ?>
-<?= $this->include('PartialsAdmin/Users/edit_student') ?>
-<?= $this->include('PartialsAdmin/Users/delete_student') ?>
 
 <!-- define the dataTable -->
 <script>

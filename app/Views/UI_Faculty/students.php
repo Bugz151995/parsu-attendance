@@ -12,7 +12,7 @@
   <div class="container p-4">
 
     <?= $this->include('PartialsFaculty/breadcrumb') ?> 
-    <?= $this->include('PartialsFaculty/Report/report') ?> 
+    <?= $this->include('PartialsFaculty/Students/student') ?> 
 
   </div>
 </main>
