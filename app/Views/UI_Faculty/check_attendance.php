@@ -9,6 +9,11 @@
 
   <?= $this->include('PartialsFaculty/topbar') ?>
 
+  <div class="container p-4">
+
+    <?= $this->include('PartialsFaculty/breadcrumb') ?> 
+
+  </div>
 </main>
 
 <?= $this->endSection() ?>

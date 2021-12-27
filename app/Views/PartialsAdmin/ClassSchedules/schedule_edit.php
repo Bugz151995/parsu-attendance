@@ -124,11 +124,26 @@
 </div>
 
 <script>
+  $(document).ready(function() {
+    $('#class-list-edit').select2({
+      dropdownParent: $('#editScheduleModal'),
+      theme: "classic"
+    });
+    $('#course-list-edit').select2({
+      dropdownParent: $('#editScheduleModal'),
+      theme: "classic"
+    });
+    $('#faculty-list-edit').select2({
+      dropdownParent: $('#editScheduleModal'),
+      theme: "classic"
+    });
+  });
+
   document.addEventListener("DOMContentLoaded", () => {
-    var editCourseModal = document.getElementById('editCourseModal')
+    var editScheduleModal = document.getElementById('editScheduleModal')
     let csidTag = document.getElementById('csid_edit');
 
-    editCourseModal.addEventListener('hidden.bs.modal', function(event) {
+    editScheduleModal.addEventListener('hidden.bs.modal', function(event) {
       $('#csid_edit').val('');
       $('#class-list-edit').val('');
       $('#course-list-edit').val('');
@@ -139,21 +154,22 @@
       $('#ay-list-edit').val('');
       $('#start_time_edit').val('');
       $('#end_time_edit').val('');
-      $('#class-list').select2({
-        dropdownParent: $('#createScheduleModal'),
+      
+      $('#class-list-edit').select2({
+        dropdownParent: $('#editScheduleModal'),
         theme: "classic"
       }).trigger('change');
-      $('#course-list').select2({
-        dropdownParent: $('#createScheduleModal'),
+      $('#course-list-edit').select2({
+        dropdownParent: $('#editScheduleModal'),
         theme: "classic"
       }).trigger('change');
-      $('#faculty-list').select2({
-        dropdownParent: $('#createScheduleModal'),
+      $('#faculty-list-edit').select2({
+        dropdownParent: $('#editScheduleModal'),
         theme: "classic"
       }).trigger('change');
     });
 
-    editCourseModal.addEventListener('shown.bs.modal', function(event) {
+    editScheduleModal.addEventListener('shown.bs.modal', function(event) {
       let schedule = JSON.parse(sessionStorage.getItem('schedule'));
       $('#csid_edit').val(schedule.class_schedule_id);
 
@@ -161,16 +177,16 @@
       $('#course-list-edit').val(schedule.course_id);
       $('#faculty-list-edit').val(schedule.faculty_id);
 
-      $('#class-list').select2({
-        dropdownParent: $('#createScheduleModal'),
+      $('#class-list-edit').select2({
+        dropdownParent: $('#editScheduleModal'),
         theme: "classic"
       }).trigger('change');
-      $('#course-list').select2({
-        dropdownParent: $('#createScheduleModal'),
+      $('#course-list-edit').select2({
+        dropdownParent: $('#editScheduleModal'),
         theme: "classic"
       }).trigger('change');
-      $('#faculty-list').select2({
-        dropdownParent: $('#createScheduleModal'),
+      $('#faculty-list-edit').select2({
+        dropdownParent: $('#editScheduleModal'),
         theme: "classic"
       }).trigger('change');
 

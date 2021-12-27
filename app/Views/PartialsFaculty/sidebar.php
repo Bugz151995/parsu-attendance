@@ -8,7 +8,7 @@
           <span class="small align-middle">Real-Time Mobile-Based Attendance System</span>
       </div>
     </a>
-    <a href="<?= base_url() ?>/f" class="nav-link link-light <?= setActive($page, 'home') ?>">
+    <a href="<?= base_url() ?>/f/dashboard" class="nav-link link-light <?= setActive($page, 'dashboard') ?>">
       <i class="bx bxs-dashboard"></i>
       <span class="mx-2">Dashboard</span>
     </a>

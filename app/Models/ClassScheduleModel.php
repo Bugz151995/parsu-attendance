@@ -13,7 +13,12 @@ class ClassScheduleModel extends Model
   protected $allowedFields = [
     'class_id', 
     'course_id', 
-    'schedule_id', 
-    'faculty_id'
+    'start_time', 
+    'end_time', 
+    'day', 
+    'room', 
+    'faculty_id', 
+    'semester', 
+    'academic_year'
   ];
 }

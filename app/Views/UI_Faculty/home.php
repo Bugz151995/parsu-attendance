@@ -9,6 +9,13 @@
 
   <?= $this->include('PartialsFaculty/topbar') ?>
 
+  <div class="container p-4">
+
+    <?= $this->include('PartialsFaculty/breadcrumb') ?> 
+    <?= $this->include('PartialsFaculty/Dashboard/dashboard_buttons') ?> 
+    <?= $this->include('PartialsFaculty/Dashboard/schedules') ?> 
+
+  </div>
 </main>
 
 <?= $this->endSection() ?>

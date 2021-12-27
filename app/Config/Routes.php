@@ -43,7 +43,7 @@ $routes->get('logout', 'Logout::index');
 
 // STUDENT ROUTE GROUP
 $routes->group('/', function($routes){
-    $routes->get('home', 'UI_Student::index');
+    $routes->get('dashboard', 'UI_Student::index');
 
     $routes->group('enrollment', function($routes){
         $routes->get('/', 'UI_Student::enrollment');
@@ -114,7 +114,7 @@ $routes->group('a', function($routes){
 
 // FACULTY ROUTE GROUP
 $routes->group('f', function($routes){
-    $routes->get('home', 'UI_Faculty::index');
+    $routes->get('dashboard', 'UI_Faculty::index');
     $routes->get('class', 'UI_Faculty::class');
     $routes->get('check_attendance', 'UI_Faculty::check_attendance');
     $routes->get('report', 'UI_Faculty::report');

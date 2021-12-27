@@ -59,13 +59,14 @@ class Login extends BaseController
                     ->where('faculty.user_id', $user_id)
                     ->first();
                 session()->set($faculty_id);
-                return redirect()->to('f/home');
+                return redirect()->to('f/dashboard');
                 break;
             case 3:
-                $student_id = $student->select('student_id')
+                $student = $student->select('student_id, class_id')
                     ->where('students.user_id', $user_id)
                     ->first();
-                session()->set('student_id', $student_id);
+                session()->set('student_id', $student['student_id']);
+                session()->set('class_id', $student['class_id']);
                 return redirect()->to('enrollment');
                 break;
         }
