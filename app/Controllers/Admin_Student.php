@@ -88,7 +88,6 @@ class Admin_Student extends BaseController
     {
         $u_model = new UserModel();
         $s_model = new StudentModel();
-        $myTime = new Time('now', 'Asia/Manila', 'en_US');
         helper("form");
 
         $user_data = [
@@ -104,7 +103,6 @@ class Admin_Student extends BaseController
 
         $student_data = [
             'student_id' => esc($this->request->getPost('student_id')),
-            'suser_no'   => $myTime->getTimestamp(), 
             'fname'      => esc($this->request->getPost('fname')), 
             'lname'      => esc($this->request->getPost('lname')),
             'class_id'   => esc($this->request->getPost('class')),

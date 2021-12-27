@@ -49,7 +49,6 @@ class Admin_Faculty extends BaseController
     {
         $u_model = new UserModel();
         $f_model = new FacultyModel();
-        $myTime = new Time('now', 'Asia/Manila', 'en_US');
         helper("form");
 
         $user_data = [

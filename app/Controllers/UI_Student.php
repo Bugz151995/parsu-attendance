@@ -21,9 +21,17 @@ class UI_Student extends BaseController
   {
     helper("form");
     $uri = service('uri');
+    $myTime = new Time("now", 'Asia/Manila');
+    $model = new ClassScheduleModel();
 
     $data = [
-      'page' => $uri->getSegment(1)
+      'page'      => $uri->getSegment(1),
+      'Time'      => $myTime,
+      'schedules' => $model->join('faculty', 'faculty.faculty_id = class_schedules.faculty_id')
+                           ->join('courses', 'courses.course_id = class_schedules.course_id')
+                           ->where('class_schedules.class_id', session()->get('class_id'))
+                           ->where('day', $myTime->toLocalizedString('EEEEE'))
+                           ->findAll()
     ];
 
     return view('UI_Student/home', $data);
@@ -53,7 +61,7 @@ class UI_Student extends BaseController
       'Time' => $time
     ];
 
-    if($isEnrolled) {
+    if ($isEnrolled) {
       return redirect()->to('dashboard');
     }
 
