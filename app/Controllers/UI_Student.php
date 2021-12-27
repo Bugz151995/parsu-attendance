@@ -24,11 +24,15 @@ class UI_Student extends BaseController
     $myTime = new Time("now", 'Asia/Manila');
     $model = new ClassScheduleModel();
 
+    $select = 'class_schedules.class_schedule_id,	class_id,	class_schedules.course_id,	start_time,	end_time,	day,	room, class_schedules.faculty_id,	semester,	academic_year,	class_schedules.created_at,	fuser_no,	fname,	lname,	user_id,	course,	description,	student_attendance_id, time_in,	time_out,	status,	image,	student_id';
+    
     $data = [
       'page'      => $uri->getSegment(1),
       'Time'      => $myTime,
-      'schedules' => $model->join('faculty', 'faculty.faculty_id = class_schedules.faculty_id')
+      'schedules' => $model->select($select)
+                           ->join('faculty', 'faculty.faculty_id = class_schedules.faculty_id')
                            ->join('courses', 'courses.course_id = class_schedules.course_id')
+                           ->join('students_attendance', 'students_attendance.class_schedule_id = class_schedules.class_schedule_id', 'left')
                            ->where('class_schedules.class_id', session()->get('class_id'))
                            ->where('day', $myTime->toLocalizedString('EEEEE'))
                            ->findAll()
@@ -82,6 +86,7 @@ class UI_Student extends BaseController
     $data = [
       'page'      => $uri->getSegment(1),
       'schedules' => $model->join('faculty', 'faculty.faculty_id = class_schedules.faculty_id')
+        ->join('courses', 'courses.course_id = class_schedules.course_id')
         ->where('class_schedules.class_id', session()->get('class_id'))->findAll()
     ];
 

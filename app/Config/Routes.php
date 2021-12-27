@@ -50,6 +50,11 @@ $routes->group('/', function($routes){
         $routes->post('verify', 'Student_Enrollment::update');
     });
 
+    $routes->group('attendance', function($routes){
+        $routes->post('timein', 'Student_Attendance::timein');
+        $routes->post('timeout', 'Student_Attendance::timeout');
+    });
+
     $routes->get('schedule', 'UI_Student::schedule');
     $routes->get('overview', 'UI_Student::overview');
 });

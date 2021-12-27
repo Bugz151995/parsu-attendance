@@ -7,6 +7,7 @@
          <thead>
             <tr>
                <th>#</th>
+               <th>Subject</th>
                <th>Time</th>
                <th>Day</th>
                <th>Room</th>
@@ -18,6 +19,10 @@
                <?php foreach ($schedules as $sc) : ?>
                   <tr>
                      <td><?= $sc['class_schedule_id']; ?></td>
+                     <td>
+                       <?= $sc['course']; ?><br>
+                       <span class="fst-italic small text-muted"><?= $sc['description']; ?></span>
+                    </td>
                      <td>
                         <?= date("h:i a", strtotime($sc['start_time']))." - ".date("h:i a", strtotime($sc['end_time'])) ?>
                      </td>

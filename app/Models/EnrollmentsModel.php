@@ -11,11 +11,11 @@ class EnrollmentsModel extends Model
   protected $returnType = 'array';
 
   protected $allowedFields = [
-    'enrollment_code', 
-    'enrollment_type', 
+    'enrollment_code',
+    'enrollment_type',
     'academic_year',
     'semester',
-    'isVerified', 
+    'isVerified',
     'student_id'
   ];
 }
