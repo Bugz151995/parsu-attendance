@@ -24,7 +24,8 @@
     <thead>
       <tr>
         <th colspan="6" class="text-center">
-          <div class="display-6 fw-bold">Attendance Report</div>
+          <div class="h4 fw-bold">Partido State University</div>
+          <div class="h4 fw-bold">Attendance Report</div>
         </th>
       </tr>
       <tr>
@@ -107,7 +108,7 @@
     var element = document.getElementById(elementId);
     var opt = {
       margin: 1,
-      filename: 'test.pdf',
+      filename: 'myfile.pdf',
       image: {
         type: 'jpeg',
         quality: 1
@@ -122,6 +123,7 @@
       }
     };
 
-    html2pdf(element, opt);
+    // New Promise-based usage:
+    html2pdf().set(opt).from(element).save();
   }
 </script>
